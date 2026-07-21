@@ -15,6 +15,8 @@ services:
         value: gemini-2.5-flash
       - key: AUTOMATA_AUTO_RUN
         value: "false"
+      - key: AUTOMATA_ALLOW_PUBLIC_APIS
+        value: "true"
       - key: AUTOMATA_ADMIN_TOKEN
         generateValue: true
       - key: GEMINI_API_KEY

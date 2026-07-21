@@ -55,6 +55,16 @@ La herramienta `replicate` genera identidades descendientes dormidas bajo `child
 
 Estas garantías están implementadas en código, no solamente declaradas en un prompt.
 
+## APIs públicas permitidas
+
+La herramienta `public_context` consulta solamente tres proveedores sin clave, seleccionados del catálogo [public-apis/public-apis](https://github.com/public-apis/public-apis):
+
+- Open-Meteo para condiciones meteorológicas.
+- Frankfurter para tipos de cambio.
+- REST Countries para datos básicos de países.
+
+El agente no acepta URLs arbitrarias: cada solicitud usa un dominio fijo, parámetros normalizados, tiempo límite y tamaño máximo de respuesta. Puedes desactivar estas fuentes con `AUTOMATA_ALLOW_PUBLIC_APIS=false`.
+
 ## Automodificación
 
 El agente puede preparar cambios bajo `.automata/proposals/`. Cada propuesta contiene motivo, archivo y parche, queda auditada y comienza como `pending_review`. Aplicarla exige revisión externa, de modo que el agente puede evolucionar su diseño sin reemplazar silenciosamente sus propios controles.

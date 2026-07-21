@@ -8,6 +8,7 @@ const defaults = {
   provider: 'mock', model: 'qwen3:4b', ollamaUrl: 'http://127.0.0.1:11434',
   tickSeconds: 30, initialCredits: 100, costPerTurn: 1,
   workspace: './workspace', allowShell: false, allowNetwork: false,
+  allowPublicApis: true,
   allowSelfModification: true, allowReplication: true, maxChildren: 3,
   maxSpendPerTurn: 5
 };
@@ -24,6 +25,9 @@ export function loadConfig() {
     supabaseUrl: process.env.SUPABASE_URL ?? '',
     supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
     adminToken: process.env.AUTOMATA_ADMIN_TOKEN ?? '',
+    allowPublicApis: process.env.AUTOMATA_ALLOW_PUBLIC_APIS == null
+      ? (disk.allowPublicApis ?? defaults.allowPublicApis)
+      : process.env.AUTOMATA_ALLOW_PUBLIC_APIS === 'true',
     autoRun: process.env.AUTOMATA_AUTO_RUN === 'true',
     tickSeconds: Number(process.env.AUTOMATA_TICK_SECONDS ?? disk.tickSeconds ?? defaults.tickSeconds),
     port: Number(process.env.PORT ?? 3000)

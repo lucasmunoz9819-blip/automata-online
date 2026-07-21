@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { inside, ensureDir, root, id } from './util.js';
 import { audit } from './audit.js';
+import { fetchPublicContext } from './public-apis.js';
 
 export async function executeTool(action, args, ctx) {
   const { config, state } = ctx;
@@ -21,6 +22,10 @@ export async function executeTool(action, args, ctx) {
     return { written: path.relative(config.workspace, target) };
   }
   if (action === 'reflect') return { recorded: String(args.note ?? '').slice(0, 2000) };
+  if (action === 'public_context') {
+    if (!config.allowPublicApis) throw new Error('APIs publicas desactivadas');
+    return fetchPublicContext(String(args.source ?? ''), args);
+  }
   if (action === 'propose_modification') {
     if (!config.allowSelfModification) throw new Error('Automodificacion desactivada');
     const proposalId = id('change');

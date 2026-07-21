@@ -10,6 +10,7 @@
   "workspace": "./workspace",
   "allowShell": false,
   "allowNetwork": false,
+  "allowPublicApis": true,
   "allowSelfModification": true,
   "allowReplication": true,
   "maxChildren": 3,

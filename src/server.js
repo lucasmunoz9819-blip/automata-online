@@ -7,6 +7,7 @@ import { loadState, saveState } from './state.js';
 import { tick } from './agent.js';
 import { auditFile } from './util.js';
 import { pullCloudState, pushCloudState } from './cloud-store.js';
+import { fetchPublicContext, publicSources } from './public-apis.js';
 
 const config = loadConfig();
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public');
@@ -42,7 +43,7 @@ async function body(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
-const server = http.createServer(async (req, res) => {
+export const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, 'http://localhost');
     if (req.method === 'GET' && url.pathname === '/') {
@@ -53,6 +54,12 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && url.pathname === '/api/health') return json(res, 200, { ok: true, name: config.name, loop: Boolean(timer), provider: config.provider });
     if (!authorized(req)) return json(res, 401, { error: 'No autorizado' });
     if (req.method === 'GET' && url.pathname === '/api/status') return json(res, 200, await currentState());
+    if (req.method === 'GET' && url.pathname === '/api/public-context') {
+      if (!config.allowPublicApis) return json(res, 403, { error: 'APIs publicas desactivadas' });
+      const source = url.searchParams.get('source');
+      if (!source) return json(res, 200, { sources: publicSources() });
+      return json(res, 200, await fetchPublicContext(source, Object.fromEntries(url.searchParams)));
+    }
     if (req.method === 'POST' && url.pathname === '/api/tick') return json(res, 200, await runTick());
     if (req.method === 'POST' && url.pathname === '/api/run/start') return json(res, 200, { started: startLoop() });
     if (req.method === 'POST' && url.pathname === '/api/run/stop') return json(res, 200, { stopped: stopLoop() });
