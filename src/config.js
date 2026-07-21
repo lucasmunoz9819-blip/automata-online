@@ -10,7 +10,10 @@ const defaults = {
   workspace: './workspace', allowShell: false, allowNetwork: false,
   allowPublicApis: true,
   allowSelfModification: true, allowReplication: true, maxChildren: 3,
-  maxSpendPerTurn: 5
+  maxSpendPerTurn: 5,
+  productPriceClp: 4990,
+  maxPaidReportsPerDay: 10,
+  maxReportAttempts: 2
 };
 
 export function loadConfig() {
@@ -25,6 +28,13 @@ export function loadConfig() {
     supabaseUrl: process.env.SUPABASE_URL ?? '',
     supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
     adminToken: process.env.AUTOMATA_ADMIN_TOKEN ?? '',
+    publicBaseUrl: (process.env.PUBLIC_BASE_URL ?? 'http://localhost:3000').replace(/\/$/, ''),
+    supportEmail: process.env.AUTOMATA_SUPPORT_EMAIL ?? '',
+    mercadoPagoAccessToken: process.env.MERCADOPAGO_ACCESS_TOKEN ?? '',
+    mercadoPagoWebhookSecret: process.env.MERCADOPAGO_WEBHOOK_SECRET ?? '',
+    productPriceClp: Math.max(1000, Number(process.env.AUTOMATA_PRODUCT_PRICE_CLP ?? disk.productPriceClp ?? defaults.productPriceClp)),
+    maxPaidReportsPerDay: Math.max(1, Number(process.env.AUTOMATA_MAX_REPORTS_PER_DAY ?? disk.maxPaidReportsPerDay ?? defaults.maxPaidReportsPerDay)),
+    maxReportAttempts: Math.max(1, Number(process.env.AUTOMATA_MAX_REPORT_ATTEMPTS ?? disk.maxReportAttempts ?? defaults.maxReportAttempts)),
     allowPublicApis: process.env.AUTOMATA_ALLOW_PUBLIC_APIS == null
       ? (disk.allowPublicApis ?? defaults.allowPublicApis)
       : process.env.AUTOMATA_ALLOW_PUBLIC_APIS === 'true',

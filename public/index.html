@@ -1,5 +1,83 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Autómata</title>
-<style>body{margin:0;background:#08110e;color:#e8f5ee;font:16px system-ui}main{max-width:820px;margin:8vh auto;padding:24px}.card{background:#101d18;border:1px solid #294638;border-radius:18px;padding:24px;box-shadow:0 20px 70px #0008}h1{font-size:clamp(32px,7vw,64px);margin:0;color:#70f0ac}button,input{font:inherit;border-radius:9px;padding:10px 14px}button{border:0;background:#70f0ac;color:#052113;font-weight:700;cursor:pointer}input{border:1px solid #426b57;background:#09130f;color:white;width:min(420px,90%)}pre{white-space:pre-wrap;background:#07100c;padding:16px;border-radius:10px;min-height:120px}.row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.muted{color:#98b5a6}</style></head>
-<body><main><p class="muted">AGENTE PERSISTENTE · AUDITABLE</p><h1>Autómata</h1><div class="card"><p>Introduce el token administrativo para consultar y controlar esta instancia.</p><input id="token" type="password" placeholder="Token administrativo"><div class="row"><button onclick="callApi('/api/status')">Estado</button><button onclick="callApi('/api/public-context?source=weather')">Contexto público</button><button onclick="callApi('/api/tick','POST')">Ejecutar turno</button><button onclick="callApi('/api/run/start','POST')">Iniciar ciclo</button><button onclick="callApi('/api/run/stop','POST')">Detener</button></div><pre id="out">Esperando…</pre></div></main>
-<script>async function callApi(path,method='GET'){const out=document.querySelector('#out');out.textContent='Procesando…';try{const r=await fetch(path,{method,headers:{authorization:'Bearer '+document.querySelector('#token').value}});out.textContent=JSON.stringify(await r.json(),null,2)}catch(e){out.textContent=e.message}}</script></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Informe estratégico personalizado con opciones, riesgos y un plan de acción concreto.">
+  <title>Autómata · Informe Estratégico Express</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/site.js" defer></script>
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="/" aria-label="Autómata, inicio"><span class="mark">A</span> Autómata</a>
+    <a class="quiet-link" href="#crear">Crear informe</a>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div>
+        <p class="eyebrow">ANÁLISIS PERSONALIZADO · ENTREGA DIGITAL</p>
+        <h1>Convierte una decisión difícil en un plan claro.</h1>
+        <p class="lead">Cuéntanos tu situación. Autómata prepara un informe con alternativas, riesgos, una recomendación razonada y tareas concretas para los próximos 7 días.</p>
+        <div class="hero-actions">
+          <a class="button" href="#crear">Crear mi informe</a>
+          <span id="heroPrice" class="price-chip">$4.990 CLP</span>
+        </div>
+        <p class="micro">El informe se genera únicamente después de que Mercado Pago confirme el pago.</p>
+      </div>
+      <aside class="report-preview" aria-label="Contenido del informe">
+        <div class="preview-top"><span></span><span></span><span></span></div>
+        <p class="preview-label">TU INFORME INCLUYE</p>
+        <ol>
+          <li><b>Lectura del problema</b><small>Hechos, supuestos y puntos ciegos.</small></li>
+          <li><b>Tres opciones viables</b><small>Ventajas, riesgos y esfuerzo.</small></li>
+          <li><b>Recomendación razonada</b><small>Por qué elegirla y cuándo no.</small></li>
+          <li><b>Plan de 7 días</b><small>Acciones verificables, paso a paso.</small></li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="how shell" aria-labelledby="como-funciona">
+      <p class="eyebrow" id="como-funciona">CÓMO FUNCIONA</p>
+      <div class="steps">
+        <article><span>01</span><h2>Describe el desafío</h2><p>Comparte el contexto necesario, sin incluir contraseñas ni datos financieros.</p></article>
+        <article><span>02</span><h2>Paga de forma segura</h2><p>El cobro ocurre en el sitio de Mercado Pago. Autómata no recibe datos de tu tarjeta.</p></article>
+        <article><span>03</span><h2>Recibe tu informe</h2><p>Al aprobarse el pago, la generación comienza y el resultado aparece en tu enlace privado.</p></article>
+      </div>
+    </section>
+
+    <section id="crear" class="order-section">
+      <div class="shell order-grid">
+        <div class="order-copy">
+          <p class="eyebrow">EMPIEZA AHORA</p>
+          <h2>¿Qué decisión necesitas tomar?</h2>
+          <p>Mientras más concreto sea el contexto, más útil será el informe. No prometemos resultados: entregamos una evaluación estructurada para que decidas mejor.</p>
+          <div class="trust-list">
+            <span>✓ Pago externo verificado</span>
+            <span>✓ Enlace privado de entrega</span>
+            <span>✓ Sin cobros automáticos</span>
+          </div>
+        </div>
+        <form id="orderForm" class="order-card">
+          <div class="field-row">
+            <label>Nombre<input name="customerName" autocomplete="name" maxlength="90" required></label>
+            <label>Correo<input name="customerEmail" type="email" autocomplete="email" maxlength="254" required></label>
+          </div>
+          <label>Tema o situación<input name="topic" maxlength="220" minlength="12" placeholder="Ej.: Quiero validar un servicio para pequeñas empresas" required></label>
+          <label>¿Qué resultado o decisión necesitas?<textarea name="objective" maxlength="900" minlength="12" rows="3" placeholder="Ej.: Necesito elegir un primer nicho y definir una oferta que pueda probar esta semana" required></textarea></label>
+          <label>Contexto adicional <span class="optional">opcional</span><textarea name="context" maxlength="4000" rows="5" placeholder="Recursos disponibles, restricciones, intentos anteriores, público, país…"></textarea></label>
+          <label class="check"><input name="acceptedTerms" type="checkbox" required><span>Acepto los <a href="/terminos.html" target="_blank" rel="noopener">términos y tratamiento de datos</a> para generar el informe.</span></label>
+          <button id="submitOrder" class="button wide" type="submit">Continuar al pago · <span id="formPrice">$4.990 CLP</span></button>
+          <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <span>© 2026 Autómata</span>
+    <span>Servicio digital asistido por IA · <a href="/terminos.html">Términos y privacidad</a><a id="supportEmail" class="hidden"></a></span>
+  </footer>
+</body>
+</html>

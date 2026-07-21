@@ -3,3 +3,4 @@ children/
 workspace/
 *.log
 .env
+node_modules/

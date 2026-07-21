@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Agente persistente y auditable, ejecutable sin fondos.",
+  "description": "Servicio autónomo y auditable de informes estratégicos con pago verificado y entrega digital.",
   "scripts": {
     "start": "node src/cli.js run",
     "web": "node src/server.js",
@@ -11,6 +11,11 @@
     "status": "node src/cli.js status",
     "test": "node --test"
   },
-  "engines": { "node": ">=20" },
-  "license": "MIT"
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mercadopago": "^3.2.0"
+  }
 }

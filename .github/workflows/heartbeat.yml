@@ -7,7 +7,7 @@ jobs:
   tick:
     runs-on: ubuntu-latest
     steps:
-      - name: Ejecutar un turno
+      - name: Procesar pedidos pagados
         env:
           AUTOMATA_URL: ${{ secrets.AUTOMATA_URL }}
           AUTOMATA_ADMIN_TOKEN: ${{ secrets.AUTOMATA_ADMIN_TOKEN }}

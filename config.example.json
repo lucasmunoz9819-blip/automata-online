@@ -14,5 +14,8 @@
   "allowSelfModification": true,
   "allowReplication": true,
   "maxChildren": 3,
-  "maxSpendPerTurn": 5
+  "maxSpendPerTurn": 5,
+  "productPriceClp": 4990,
+  "maxPaidReportsPerDay": 10,
+  "maxReportAttempts": 2
 }

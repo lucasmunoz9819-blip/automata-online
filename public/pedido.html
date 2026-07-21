@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tu pedido · Autómata</title><link rel="stylesheet" href="/styles.css"><script src="/pedido.js" defer></script>
+</head><body>
+  <header class="nav shell"><a class="brand" href="/"><span class="mark">A</span> Autómata</a><a class="quiet-link" href="/">Volver</a></header>
+  <main class="shell status-shell">
+    <section class="status-card">
+      <span id="statusPill" class="status-pill">Consultando</span>
+      <h1 id="statusTitle">Estamos localizando tu pedido.</h1>
+      <p id="statusText" class="status-text">Mantén abierto este enlace privado. Aquí aparecerá tu informe.</p>
+      <div id="progress" class="progress"><span></span></div>
+      <div id="orderMeta" class="micro"></div>
+      <div id="reportArea" class="hidden">
+        <div class="report-actions"><button id="copyReport" class="button secondary">Copiar informe</button><button id="downloadReport" class="button">Descargar .md</button></div>
+        <pre id="report" class="report"></pre>
+      </div>
+      <p id="statusError" class="danger"></p>
+    </section>
+  </main>
+</body></html>

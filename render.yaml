@@ -17,6 +17,16 @@ services:
         value: "false"
       - key: AUTOMATA_ALLOW_PUBLIC_APIS
         value: "true"
+      - key: PUBLIC_BASE_URL
+        value: https://automata-online.onrender.com
+      - key: AUTOMATA_PRODUCT_PRICE_CLP
+        value: "4990"
+      - key: AUTOMATA_MAX_REPORTS_PER_DAY
+        value: "10"
+      - key: AUTOMATA_MAX_REPORT_ATTEMPTS
+        value: "2"
+      - key: AUTOMATA_SUPPORT_EMAIL
+        value: lucas.munoz9819@gmail.com
       - key: AUTOMATA_ADMIN_TOKEN
         generateValue: true
       - key: GEMINI_API_KEY
@@ -24,4 +34,8 @@ services:
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: MERCADOPAGO_ACCESS_TOKEN
+        sync: false
+      - key: MERCADOPAGO_WEBHOOK_SECRET
         sync: false
