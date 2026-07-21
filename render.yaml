@@ -12,7 +12,7 @@ services:
       - key: AUTOMATA_PROVIDER
         value: gemini
       - key: AUTOMATA_MODEL
-        value: gemini-2.5-flash
+        value: gemini-3.1-flash-lite
       - key: AUTOMATA_AUTO_RUN
         value: "false"
       - key: AUTOMATA_ALLOW_PUBLIC_APIS
