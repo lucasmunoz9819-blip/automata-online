@@ -3,7 +3,7 @@ services:
     name: automata-local
     runtime: node
     plan: free
-    buildCommand: npm test
+    buildCommand: npm ci && npm test
     startCommand: npm run web
     healthCheckPath: /api/health
     envVars:
