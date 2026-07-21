@@ -1,0 +1,17 @@
+{
+  "name": "Semilla",
+  "genesis": "Aprende, crea herramientas utiles y conserva un registro honesto de tus acciones.",
+  "provider": "mock",
+  "model": "qwen3:4b",
+  "ollamaUrl": "http://127.0.0.1:11434",
+  "tickSeconds": 30,
+  "initialCredits": 100,
+  "costPerTurn": 1,
+  "workspace": "./workspace",
+  "allowShell": false,
+  "allowNetwork": false,
+  "allowSelfModification": true,
+  "allowReplication": true,
+  "maxChildren": 3,
+  "maxSpendPerTurn": 5
+}

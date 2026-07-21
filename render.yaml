@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: automata-local
+    runtime: node
+    plan: free
+    buildCommand: npm test
+    startCommand: npm run web
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AUTOMATA_PROVIDER
+        value: gemini
+      - key: AUTOMATA_MODEL
+        value: gemini-2.5-flash
+      - key: AUTOMATA_AUTO_RUN
+        value: "false"
+      - key: AUTOMATA_ADMIN_TOKEN
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false

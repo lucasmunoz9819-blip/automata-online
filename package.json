@@ -1,0 +1,16 @@
+{
+  "name": "automata-local",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agente persistente y auditable, ejecutable sin fondos.",
+  "scripts": {
+    "start": "node src/cli.js run",
+    "web": "node src/server.js",
+    "demo": "node src/cli.js demo",
+    "status": "node src/cli.js status",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

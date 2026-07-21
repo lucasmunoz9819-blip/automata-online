@@ -1,0 +1,5 @@
+.automata/
+children/
+workspace/
+*.log
+.env
