@@ -5,4 +5,7 @@ create table if not exists public.automata_state (
 );
 
 alter table public.automata_state enable row level security;
+grant usage on schema public to service_role;
+grant select, insert, update, delete on table public.automata_state to service_role;
+
 -- La service role usada solo por el servidor omite RLS. No expongas esa clave al navegador.
